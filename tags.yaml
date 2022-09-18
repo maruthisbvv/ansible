@@ -6,9 +6,9 @@
   ignore_errors: yes
   tasks:
 - name: Copy the Kernel Patch Repo File
-  copy:
-    src: /etc/yum.repos.d/yum.repo
-    dest: /etc/yum.repos.d/
+  #copy:
+  # src: /etc/yum.repos.d/yum.repo
+  # dest: /etc/yum.repos.d/
 - name: Apply patches
   yum:
      name: kernel
