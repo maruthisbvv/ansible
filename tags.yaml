@@ -1,8 +1,7 @@
 # vi patching.yml
 ---
-- name: Patch Linux system
-  hosts: linux 
-  #become: true
+- hosts: linux 
+  become: true
   ignore_errors: yes
 - tasks:
     - name: restart system to reboot to newest kernel
