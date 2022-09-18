@@ -5,11 +5,7 @@
   become: true
   ignore_errors: yes
   tasks:
-- name: Copy the Kernel Patch Repo File
-  copy:
-    src: /etc/yum.repos.d/yum.repo
-    dest: /etc/yum.repos.d/
-- name: Apply patches
-  yum:
-     name: kernel
-     state: latest 
+    - name: Check RHN or local repository connectivity
+      shell:
+        cmd: yum repolist  > /dev/null 2>&1; if [ $? -eq 0 ]; then echo "Repository found"; else echo "No repository found"; fi
+      register: repo_status
