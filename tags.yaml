@@ -2,7 +2,7 @@
 ---
 - name: Patch Linux system
   hosts: linux
-  become: true
+  #become: true
   ignore_errors: yes
 - tasks:
     - name: restart system to reboot to newest kernel
