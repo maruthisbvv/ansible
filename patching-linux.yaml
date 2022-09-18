@@ -9,3 +9,7 @@
       shell:
         cmd: yum repolist  > /dev/null 2>&1; if [ $? -eq 0 ]; then echo "Repository found"; else echo "No repository found"; fi
       register: repo_status
+    - name: Failed if no repository found
+      fail:
+        msg: "repository not found on {{ ansible_hostname }}"
+      when: repo_status.stdout != "Repository found"
