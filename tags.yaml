@@ -3,8 +3,3 @@
 - hosts: all 
   become: true
   ignore_errors: yes
-- tasks:
-    - name: restart system to reboot to newest kernel
-      shell: "sleep 5 && reboot"
-      async: 1
-      poll: 0
