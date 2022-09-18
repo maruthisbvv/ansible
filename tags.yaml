@@ -1,6 +1,7 @@
-----
+# vi patching.yml
+---
 - name: Patch Linux system
-  hosts: all
+  hosts: Linux_Servers
   become: true
   ignore_errors: yes
   tasks:
