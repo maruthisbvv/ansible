@@ -13,6 +13,10 @@
       fail:
         msg: "repository not found on {{ ansible_hostname }}"
       when: repo_status.stdout != "Repository found"
+    - name: Failed if no repository found
+      fail:
+        msg: "repository not found on {{ ansible_hostname }}"
+      when: repo_status.stdout != "Repository found"
     - name: Failed if vsftpd is running
       fail:
         msg: "vsftpd running on {{ ansible_hostname }}"
