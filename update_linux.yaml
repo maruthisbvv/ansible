@@ -1,0 +1,14 @@
+---
+- name: Patch Linux system
+  hosts: all
+  become: true
+  ignore_errors: yes
+  tasks:
+- name: Copy the Kernel Patch Repo File
+  copy:
+    src: /etc/yum.repos.d/yum.repo
+    dest: /etc/yum.repos.d/
+- name: Apply patches
+  yum:
+     name: kernel
+     state: latest 
