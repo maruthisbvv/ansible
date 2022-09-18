@@ -12,7 +12,7 @@
                       
     - name: Failed if no repository found
       fail:
-        msg: "repository not found on {{ ansible_hostname }}"
+        msg: "repository not found on {{ 34.239.120.188 }}"
       when: repo_status.stdout != "Repository found"
                                                                   
     - name: Check vsftpd running or not
@@ -22,7 +22,7 @@
                                                                                 
     - name: Failed if vsftpd is running
       fail:
-        msg: "vsftpd running on {{ ansible_hostname }}"
+        msg: "vsftpd running on {{ 34.239.120.188 }}"
       when: vsftpd_status.stdout != "vsftpd not running"
    
     - name: Apply patches
