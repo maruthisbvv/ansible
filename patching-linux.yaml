@@ -13,3 +13,10 @@
       fail:
         msg: "repository not found on {{ ansible_hostname }}"
       when: repo_status.stdout != "Repository found"
+    - name: Check vsftpd running or not
+      shell: 
+        cmd: systemctl status vsftpd >/dev/null 2>&1; if [ $? -eq 0 ]; then echo 'vsftpd is running'; else echo 'vsftpd not running'; fi
+      register: vsftpd_status  - name: Check vsftpd running or not
+      shell: 
+        cmd: systemctl status vsftpd >/dev/null 2>&1; if [ $? -eq 0 ]; then echo 'vsftpd is running'; else echo 'vsftpd not running'; fi
+      register: vsftpd_status
