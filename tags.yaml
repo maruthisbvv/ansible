@@ -1,6 +1,6 @@
 # vi patching.yml
 ---
-- hosts: linux 
+- hosts: all 
   become: true
   ignore_errors: yes
 - tasks:
