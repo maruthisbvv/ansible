@@ -1,0 +1,9 @@
+---
+- hosts: all
+
+  tasks:
+    - name: Group by os
+      group_by: key=os_{{ ansible_distribution }} 
+      change_when: Flase
+  roles:
+    - rhel-pactchmanagement
