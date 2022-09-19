@@ -1,8 +1,79 @@
 ---
-- hosts: appServers
+- hosts: all 
+  become: yes
+  pre_tasks:
+   - name: Make sure all the servers are pingable
+     ping:
   tasks:
-   - name: Create a file
+#   - name: Stop the service #Change services according to the requirement
+#     service:
+#       name: {{ item }}
+#       state: stopped
+#     loop:
+#        - service1
+#        - service2
+#        - service3
+
+   - name: Clean yum cache 
      file:
-      path: /tmp/Mithun.txt 
-      state: touch
-...
+       path: /var/cache/yum/
+       state: absent 
+
+   - name: Check space in /var [Abort the playbook if there is no sufficient space]
+     shell: df -h /var
+     register: space
+   - debug: var=space
+     tags: space
+
+   - name: Pause for 2 minutes
+     pause:
+      minutes: 2
+
+   - name: Patch the servers
+     shell: yum -y update
+    
+   - name: Clean yum cache 
+     file:
+       path: /var/cache/yum/
+       state: absent
+
+   - name: Reboot servers
+     shell: sleep 2 && /sbin/shutdown -r now 
+     async: 1
+     poll: 0
+     tags: boot
+
+   - name: Wait for 3 minutes for server to come up after rebooting
+     pause:
+      minutes: 3
+
+   - name: Confirm if server is responding to ssh
+     wait_for:
+       host: "{{ inventory_hostname }}"
+       port: 22
+       delay: 15
+       timeout: 300
+       state: started
+
+   - name: Clean yum cache
+     file:
+       path: /var/cache/yum/
+       state: absent
+
+   - name: Curl
+     shell: curl -k https://www.ansible.com/elb-check.txt
+     register: curl
+   - debug: var=curl
+#   - name: Start the services #Change services according to the requirement
+#     service:
+#       name: {{ item }}
+#       state: started
+#     loop:
+#        - service1
+#        - service2
+#        - service3
+
+#   - name: Check if the service is up 
+#     shell: ps -ef | grep "service-name"
+#     register: service
+#   - debug: var=service
