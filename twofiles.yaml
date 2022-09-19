@@ -1,5 +1,5 @@
 ---
-- hosts: batch1 
+- hosts: all 
   become: yes
   pre_tasks:
    - name: Make sure all the servers are pingable
