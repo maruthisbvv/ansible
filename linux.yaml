@@ -4,7 +4,7 @@
   tasks:
     - name: Upgrade all packages to the latest version
       yum:
-         update_cache: yes
-         upgrade: yes
+        update_cache: yes
+        upgrade: yes
 
 
