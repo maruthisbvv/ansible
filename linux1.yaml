@@ -1,0 +1,10 @@
+---
+- name: Patch linuc system
+  hosts: all
+  become: true
+  ignore_errors: yes
+  task
+- name: Apply the changes
+  yum:
+     name: kernel
+     state: latest
