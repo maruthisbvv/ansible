@@ -3,8 +3,8 @@
   become: true
   tasks:
     - name: Upgrade all packages to the latest version
-      yum:
-        update_cache: yes
-        upgrade: yes
+       yum:
+         update_cache: yes
+         upgrade: yes
 
 
