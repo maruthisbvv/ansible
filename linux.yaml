@@ -1,8 +1,8 @@
 ---
+- hosts: all
 - name: Upgrade all packages to the latest version
-  hosts: all
   
-  tasks:
+    tasks:
   - name: Upgrade all packages to the latest version
     yum: 
        update_cache: yes
