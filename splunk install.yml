@@ -11,6 +11,7 @@
       rpm_key:
         key: https://docs.splunk.com/images/6/6b/SplunkPGPKey.pub
         state: present
+        
     - name: install splunk
       yum:
         name: /home/ansible/splunk-9.0.1-82c987350fde-linux-2.6-x86_64.rpm
